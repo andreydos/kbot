@@ -44,14 +44,18 @@ to quickly create a Cobra application.`,
 		}
 
 		kbot.Handle(telebot.OnText, func(ctx telebot.Context) error {
-			payload := ctx.Message().Payload
+			text := ctx.Message().Text
 
-			log.Print("Request from bot showed on next line: \n => " + ctx.Message().Text)
+			log.Print("User request to bot showed on next line: \n => " + text)
 
-			switch payload {
-			case "hello":
-				response := fmt.Sprintf("Hello I'm Kbot %s", appVersion);
+			if text == "/start" {
+				response := fmt.Sprintf("Hello I'm Kbot %s. I can reverse string that you will write me.", appVersion)
 				log.Print("Response to the request on next line: \n => " + response)
+				err = ctx.Send(response)
+			} else {
+				reversed := reverseString(text)
+				response := fmt.Sprintf("Reversed string is: %s", reversed)
+				log.Print("Response to the request on next line: \n => " + reversed)
 				err = ctx.Send(response)
 			}
 
@@ -74,4 +78,12 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// kbotCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+}
+
+func reverseString(s string) string {
+	runes := []rune(s)
+	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
+		runes[i], runes[j] = runes[j], runes[i]
+	}
+	return string(runes)
 }
