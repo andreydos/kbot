@@ -1,5 +1,7 @@
 https://t.me/Reversio_ioioi_bot
 
+t.me/Reversio_ioioi_bot
+
 @Reversio_ioioi_bot
 
 Test bot to reverse string made with golang
