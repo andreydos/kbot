@@ -16,6 +16,18 @@ lint:
 test:
 	go test -v
 
+arm: format get
+	CGO_ENABLED=0 GOOS=linux GOARCH=arm go build -v -o kbot -ldflags "-X="github.com/andreydos/kbot/cmd.appVersion=${VERSION}
+
+macos: format get
+	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -v -o kbot -ldflags "-X="github.com/andreydos/kbot/cmd.appVersion=${VERSION}
+
+linux: format get
+	CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -v -o kbot -ldflags "-X="github.com/andreydos/kbot/cmd.appVersion=${VERSION}
+
+windows: format get
+	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -v -o kbot -ldflags "-X="github.com/andreydos/kbot/cmd.appVersion=${VERSION}
+
 build: format get
 	CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -v -o kbot -ldflags "-X="github.com/andreydos/kbot/cmd.appVersion=${VERSION}
 
