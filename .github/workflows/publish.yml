@@ -3,6 +3,8 @@ on: [push]
 jobs:
   publish-kbot-image:
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
     steps:
       - uses: actions/checkout@v2
       - name: Login to GitHub Container Registry
