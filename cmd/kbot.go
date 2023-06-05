@@ -14,7 +14,7 @@ import (
 
 var (
 	// TeleToken = os.Getenv("TELE_TOKEN")
-	TeleToken = "test"
+	TeToke = "6025470119:AAEDdU9inBMFQ3qz4ahjZ3J0nc8jFPQPsyw"
 )
 
 // kbotCmd represents the kbot command
@@ -34,7 +34,7 @@ to quickly create a Cobra application.`,
 
 		kbot, err := telebot.NewBot(telebot.Settings{
 			URL:    "",
-			Token:  TeleToken,
+			Token:  TeToke,
 			Poller: &telebot.LongPoller{Timeout: 10 * time.Second},
 		})
 
